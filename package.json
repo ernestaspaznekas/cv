@@ -1,6 +1,7 @@
 {
   "name": "cv",
-  "version": "0.1.0",
+  "homepage": "https://ernestaspaznekas.github.io/cv",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "react": "^16.0.0",
@@ -8,14 +9,13 @@
     "react-scripts": "1.0.14"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
-  "homepage": "https://ernestaspaznekas.github.io/cv",
   "devDependencies": {
     "gh-pages": "^1.0.0"
   }
