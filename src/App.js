@@ -8,11 +8,11 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Welcome to My resume build with React</h1>
         </header>
         <div>
           <p>
-            Everything is working as expected?
+            Everything is working as expected
           </p>
         </div>
       </div>
