@@ -1,1 +1,1 @@
-Start of app building with React.Js
+Building app with React.js
