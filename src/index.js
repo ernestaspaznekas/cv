@@ -1,20 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles/index.css';
-import App from './containers/App.js';
+//import './styles/index.css';
+//const path = './containers/MuiDarkApp';
+import App from './containers/MuiDarkApp';
 import registerServiceWorker from './registerServiceWorker';
 
-const rootEl = document.getElementById('root');
+const app = document.getElementById('root');
 
-ReactDOM.render(<App />, rootEl);
+ReactDOM.render(<App />, app);
 registerServiceWorker();
 
 if (module.hot) {
-    module.hot.accept('./containers/App', () => {
-      const NextApp = require('./containers/App.js').default
+    module.hot.accept('./containers/MuiDarkApp', () => {
+      const NextApp = require('./containers/MuiDarkApp').default
       ReactDOM.render(
         <NextApp />,
-        rootEl
+        app
       )
     })
 }
