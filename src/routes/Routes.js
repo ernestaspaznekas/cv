@@ -7,18 +7,23 @@ import {
 } from 'react-router-dom'
 import Button from 'material-ui/Button';
 
-const activeStyle={
+const style={
+  NavLink:{
     color: 'white',
     textDecoration: 'none !important',
-   }
+  },
+  div:{
+    display: '-webkit-inline-box',
+  },
+}
 
 const BasicRouter = () => (
   <Router>
-    <div>
+    <div style={style.div}>
         <nav>
-            <Button raised color="primary"><NavLink to="/" activeStyle={activeStyle}>Home</NavLink></Button>
-            <Button raised color="primary"><NavLink to="/about" activeStyle={activeStyle}>About</NavLink></Button>
-            <Button raised color="primary"><NavLink to="/topics" activeStyle={activeStyle}>Topics</NavLink></Button>
+            <Button raised color="primary"><NavLink to="/" activeStyle={style.NavLink}>Home</NavLink></Button>
+            <Button raised color="primary"><NavLink to="/about" activeStyle={style.NavLink}>About</NavLink></Button>
+            <Button raised color="primary"><NavLink to="/topics" activeStyle={style.NavLink}>Topics</NavLink></Button>
         </nav>
 
       {/*<hr/>

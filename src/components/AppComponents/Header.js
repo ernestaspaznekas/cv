@@ -58,7 +58,7 @@ class ButtonAppBar extends React.Component {
 
     return (
       <div className={classes.root}>
-      <Helmet title='Home' titleTemplate='Musix - %s' />
+      <Helmet title='Home' titleTemplate='Resume' />
         <AppBar position="static">
           <Toolbar>
             <IconButton className={classes.menuButton} color="contrast" aria-label="Menu">
