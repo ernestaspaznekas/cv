@@ -2,8 +2,8 @@
 
 import React, { Component } from 'react'
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
-import Layout from '../components/App/Layout'
-import 'typeface-roboto'
+
+import Layout from '../layouts/Layout'
 
 const theme = createMuiTheme({
   palette: {

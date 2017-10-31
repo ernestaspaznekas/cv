@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import './styles/index.css';
-//const path = './containers/MuiDarkApp';
 import App from './containers/MuiDarkApp';
 import registerServiceWorker from './registerServiceWorker';
+import 'typeface-roboto'
 
 const app = document.getElementById('root');
 

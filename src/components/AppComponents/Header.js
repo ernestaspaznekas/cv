@@ -1,172 +1,93 @@
-/* eslint-disable flowtype/require-valid-file-annotation */
+// @flow weak
 
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import classNames from 'classnames';
-import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import List from 'material-ui/List';
 import Typography from 'material-ui/Typography';
-import Divider from 'material-ui/Divider';
+//import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
-import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
-import ChevronRightIcon from 'material-ui-icons/ChevronRight';
-//import { mailFolderListItems, otherMailFolderListItems } from './tileData';
-import Grid from '../Utils/Grid'
-import Mail from 'material-ui-icons/Mail'
 
-const drawerWidth = 240;
+//Nav Drawer
+import Drawer from 'material-ui/Drawer';
+import List from 'material-ui/List';
+import Divider from 'material-ui/Divider';
+import { mailFolderListItems, otherMailFolderListItems } from '../../utils/titleData';
+
+import {Helmet} from "react-helmet";
+import Router from '../../routes/Routes'
 
 const styles = theme => ({
   root: {
-    width: '100%',
-    height: 1024,
     marginTop: theme.spacing.unit * 3,
-    zIndex: 1,
-    overflow: 'hidden',
-  },
-  appFrame: {
-    position: 'relative',
-    display: 'flex',
     width: '100%',
-    height: '100%',
   },
-  appBar: {
-    position: 'absolute',
-    zIndex: theme.zIndex.navDrawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
+  flex: {
+    flex: 1,
   },
   menuButton: {
-    marginLeft: 12,
-    marginRight: 36,
-  },
-  hide: {
-    display: 'none',
-  },
-  drawerPaper: {
-    position: 'relative',
-    height: '100%',
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  drawerPaperClose: {
-    width: 60,
-    overflowX: 'hidden',
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  drawerInner: {
-    // Make the items inside not wrap when transitioning:
-    width: drawerWidth,
-  },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
-  },
-  content: {
-    width: '100%',
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    padding: 24,
-    height: 'calc(100% - 56px)',
-    marginTop: 56,
-    [theme.breakpoints.up('sm')]: {
-      height: 'calc(100% - 64px)',
-      marginTop: 64,
-    },
+    marginLeft: -12,
+    marginRight: 20,
   },
 });
 
-class Header extends React.Component {
+class ButtonAppBar extends React.Component {
   state = {
-    open: false,
+    left: false,
   };
 
-  handleDrawerOpen = () => {
-    this.setState({ open: true });
-  };
 
-  handleDrawerClose = () => {
-    this.setState({ open: false });
+  toggleDrawer = (side, open) => () => {
+    this.setState({
+      [side]: open,
+    });
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const classes  = styles;
+
+    const sideList = (
+      <div className={classes.list}>
+        <List>{mailFolderListItems}</List>
+        <Divider />
+        <List>{otherMailFolderListItems}</List>
+      </div>
+    );
 
     return (
       <div className={classes.root}>
-        <div className={classes.appFrame}>
-          <AppBar className={classNames(classes.appBar, this.state.open && classes.appBarShift)}>
-            <Toolbar disableGutters={!this.state.open}>
-              <IconButton
-                color="contrast"
-                aria-label="open drawer"
-                onClick={this.handleDrawerOpen}
-                className={classNames(classes.menuButton, this.state.open && classes.hide)}
+      <Helmet title='Home' titleTemplate='Musix - %s' />
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton className={classes.menuButton} color="contrast" aria-label="Menu">
+              <MenuIcon onClick={this.toggleDrawer('left', true)} />
+            </IconButton>
+            <Drawer open={this.state.left} onRequestClose={this.toggleDrawer('left', false)}>
+              <div
+                tabIndex={0}
+                role="button"
+                onClick={this.toggleDrawer('left', false)}
+                onKeyDown={this.toggleDrawer('left', false)}
               >
-                <MenuIcon />
-              </IconButton>
-              <Typography type="title" color="inherit" noWrap>
-                App layout
-              </Typography>
-            </Toolbar>
-          </AppBar>
-          <Drawer
-            type="permanent"
-            classes={{
-              paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
-            }}
-            open={this.state.open}
-          >
-            <div className={classes.drawerInner}>
-              <div className={classes.drawerHeader}>
-                <IconButton onClick={this.handleDrawerClose}>
-                  {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-                </IconButton>
+                {sideList}
               </div>
-              <Divider />
-              <List className={classes.list}>{[<Mail />]/*{mailFolderListItems}*/}</List>
-              <Divider />
-              <List className={classes.list}>{/*{otherMailFolderListItems}*/}</List>
-            </div>
-          </Drawer>
-          <main className={classes.content}>
-            <Typography type="body1" noWrap>
-              {'You think water moves fast? You should see ice.'}
-              <Grid />
+            </Drawer>
+            <Typography type="title" color="inherit" className={classes.flex}>
+              Title
             </Typography>
-          </main>
-        </div>
+            <Router />
+            {/*<Button color="contrast">Login</Button>*/}
+          </Toolbar>
+        </AppBar>
       </div>
-    );
+    )
   }
 }
 
-Header.propTypes = {
+ButtonAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(Header);
+export default withStyles(styles)(ButtonAppBar);

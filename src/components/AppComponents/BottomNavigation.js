@@ -24,6 +24,10 @@ class LabelBottomNavigation extends React.Component {
 
   handleChange = (event, value) => {
     this.setState({ value });
+    
+    if ( value === 'map' ) {
+      this.props.handleMap()
+    }
   };
 
   render() {
@@ -34,7 +38,7 @@ class LabelBottomNavigation extends React.Component {
       <BottomNavigation value={value} onChange={this.handleChange} className={classes.root}>
         <BottomNavigationButton label="Recents" value="recents" icon={<RestoreIcon />} />
         <BottomNavigationButton label="Favorites" value="favorites" icon={<FavoriteIcon />} />
-        <BottomNavigationButton label="Nearby" value="nearby" icon={<LocationOnIcon />} />
+        <BottomNavigationButton label="Map" value="map" icon={<LocationOnIcon />} />
         <BottomNavigationButton label="Folder" value="folder" icon={<FolderIcon />} />
       </BottomNavigation>
     );

@@ -1,11 +1,15 @@
 {
   "name": "cv",
   "homepage": "https://ernestaspaznekas.github.io/cv",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "dependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-google-maps": "^9.0.1",
+    "react-helmet": "^5.2.0",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.14",
     "typeface-roboto": "0.0.41"
   },
