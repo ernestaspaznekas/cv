@@ -1,6 +1,5 @@
 import React from 'react';
 import BottomNavigation from './BottomNavigation'
-//import AppBar from 'material-ui/AppBar';
 import Typography from 'material-ui/Typography';
 
 
@@ -18,14 +17,14 @@ const footerFontStyle = {
 
 export default class AppFooter extends React.Component {
     
-    handleMap = (event) => {
-    this.props.handleMap()
+    handleChange = (value) => {
+        this.props.handleChange(value)
     };
 
     render() {
         return (
             <div>
-                <BottomNavigation handleMap={this.handleMap} />
+                <BottomNavigation handleChange={this.handleChange} />
                 <Typography type="title" color="inherit" align="center">
                     <div style={footerStyle}>
                         <p style={footerFontStyle}>

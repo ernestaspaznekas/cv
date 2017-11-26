@@ -1,8 +1,5 @@
-// @flow weak
-
 import React, { Component } from 'react'
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles'
-
 import Layout from '../layouts/Layout'
 
 const theme = createMuiTheme({
